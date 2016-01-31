@@ -63,11 +63,11 @@ class UtilisateursData extends AbstractFixture implements OrderedFixtureInterfac
         $utilisateur4->setPassword($this->container->get('security.encoder_factory')->getEncoder($utilisateur4)->encodePassword('Pa$$w0rd1', $utilisateur4->getSalt()));
         $manager->persist($utilisateur4);
         
-        
-        $this->addReference('utilisateurs1', $utilisateur1);
-        $this->addReference('utilisateurs2', $utilisateur2);
-        $this->addReference('utilisateurs3', $utilisateur3);
-        $this->addReference('utilisateurs4', $utilisateur4);
+        $manager->flush();
+          $this->addReference('utilisateurs1', $utilisateur1);
+          $this->addReference('utilisateurs2', $utilisateur2);
+          $this->addReference('utilisateurs3', $utilisateur3);
+          $this->addReference('utilisateurs4', $utilisateur4);
                 
     }
     

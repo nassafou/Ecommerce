@@ -15,8 +15,8 @@ class MediaData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $media1 = new Media();
-        $media1->setAlt('legume2');
-        $media1->setPath('https://commons.wikimedia.org/wiki/File:L%C3%A9gumes_pour_ratatouille_au_march%C3%A9_d%27Apt.jpg');
+        $media1->setAlt('pomme');
+        $media1->setPath('http://image.shutterstock.com/display_pic_with_logo/353191/124592107/stock-photo-red-apple-with-leaf-124592107.jpg');
 
         $manager->persist($media1);
         //$manager->flush();
@@ -24,7 +24,7 @@ class MediaData extends AbstractFixture implements OrderedFixtureInterface
         
         $media2 = new Media();
         $media2->setAlt('oignon');
-        $media2->setPath('img/oignon.png');
+        $media2->setPath('http://image.shutterstock.com/display_pic_with_logo/999701/123228298/stock-photo-ripe-onion-on-a-white-background-123228298.jpg');
 
         $manager->persist($media2);
         //$manager->flush();
@@ -47,14 +47,14 @@ class MediaData extends AbstractFixture implements OrderedFixtureInterface
         
         $media5 = new Media();
         $media5->setAlt('raisin');
-        $media5->setPath('https://commons.wikimedia.org/wiki/File:Vineyard_in_Montone.jpg');
+        $media5->setPath('http://images.all-free-download.com/images/graphiclarge/grape_hd_picture_5_167243.jpg');
 
         $manager->persist($media5);
         //$manager->flush();
         
         $media6 = new Media();
         $media6->setAlt('poivron');
-        $media6->setPath('https://commons.wikimedia.org/wiki/File:Capsicum_annuum_fruits_IMGP0049.jpg');
+        $media6->setPath('http://image.shutterstock.com/display_pic_with_logo/683470/99858464/stock-photo-bell-pepper-mix-on-white-background-99858464.jpg');
 
         $manager->persist($media6);
         //$manager->flush();
@@ -62,14 +62,14 @@ class MediaData extends AbstractFixture implements OrderedFixtureInterface
         
         $media7 = new Media();
         $media7->setAlt('tomate');
-        $media7->setPath('https://commons.wikimedia.org/wiki/File:Bright_red_tomato_and_cross_section02.jpg');
+        $media7->setPath('http://image.shutterstock.com/display_pic_with_logo/359716/129610550/stock-photo-tomato-with-drops-isolated-129610550.jpg');
 
         $manager->persist($media7);
         
         
         $media8 = new Media();
         $media8->setAlt('aubergine');
-        $media8->setPath('https://commons.wikimedia.org/wiki/File:Solanum_melongena_26_08_2012_(1).JPG');
+        $media8->setPath('http://image.shutterstock.com/display_pic_with_logo/676765/151789964/stock-photo-eggplant-or-aubergine-vegetable-on-white-background-151789964.jpg');
 
         $manager->persist($media8);
         
