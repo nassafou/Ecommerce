@@ -1,36 +1,8 @@
-produits:
-    pattern:  /
-    defaults: { _controller: EcommerceBundle:Produits:produits }
-presentation:
-    pattern:  /produit/{id}
-    defaults: { _controller: EcommerceBundle:Produits:presentation }
-panier:
-    pattern:  /panier
-    defaults: { _controller: EcommerceBundle:Panier:panier }
-ajouter:
-    pattern:  /ajouter/{id}
-    defaults: { _controller: EcommerceBundle:Panier:ajouter }
-supprimer:
-    pattern:  /supprimer/{id}
-    defaults: { _controller: EcommerceBundle:Panier:supprimer }
-livraison:
-    pattern:  /panier/livraison
-    defaults: { _controller: EcommerceBundle:Panier:livraison }
-validation:
-    pattern:  /panier/Validation
-    defaults: { _controller: EcommerceBundle:Panier:Validation }
-test:
-    pattern:  /test
-    defaults: { _controller: EcommerceBundle:Test:ajout }
-ecom_categories:
-    pattern:  /categoiries
-    defaults: { _controller: EcommerceBundle:Categories:menu }
-categorieProduits:
-    pattern:  /categories/{categorie}
-    defaults: { _controller: EcommerceBundle:Produits:produits }
-rechercheProduits:
-    pattern:  /recherche
-    defaults: { _controller: EcommerceBundle:Produits:rechercheTraitement }
-livraisonAdresseSuppression:
-    pattern:  /livraison/adresse/suppression/{id}
-    defaults: { _controller: EcommerceBundle:Panier:adresseSuppression }
+routingPanier:
+       resource: "@EcommerceBundle/Resources/config/routing/routingPanier.yml"
+       prefix:  /panier
+
+routingProduits:
+       resource: "@EcommerceBundle/Resources/config/routing/routingProduits.yml"
+       prefix:  /
+       

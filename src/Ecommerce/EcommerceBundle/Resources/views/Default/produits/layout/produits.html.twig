@@ -9,9 +9,9 @@
        <div class="span3">
         {% include "::modulesUsed/navigation.html.twig" %}
 		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-		{% include 'UtilisateursBundle:Default:modulesUsed/utilisateurConnecte.html.twig'%}
+		     {% include 'UtilisateursBundle:Default:modulesUsed/utilisateursConnecte.html.twig'%}
 	    {% else %}
-		{% include "::modulesUsed/utilisateur.html.twig"%}
+		     {% include "::modulesUsed/utilisateur.html.twig"%}
 	    {% endif %}
 	    {% render(controller('EcommerceBundle:Panier:menu')) %}
 		

@@ -3,19 +3,18 @@
 namespace Ecommerce\EcommerceBundle\Twig\Extension;
 
 
-class TvaExtension extends \Twig_Extension{
+class TvaExtension extends \Twig_Extension
+{
     
     public function getFilters()
     {
        return array(new \Twig_SimpleFilter('tva', array($this, 'calculTva'))) ;
     }
     
-   
-   
+    // Methode Calcul de la tva
    function calculTva($prixHT, $tva)
    {
      return round($prixHT / $tva,2);
-    
    }
    
    public function getName()
