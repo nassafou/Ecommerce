@@ -4,6 +4,7 @@ namespace Ecommerce\EcommerceBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\ReferenceRepository;
 use Ecommerce\EcommerceBundle\Entity\Media;
 
 class MediaData extends AbstractFixture implements OrderedFixtureInterface
@@ -72,6 +73,12 @@ class MediaData extends AbstractFixture implements OrderedFixtureInterface
 
         $manager->persist($media8);
         
+        $media9 = new Media();
+        $media9->setAlt('orange');
+        $media9->setPath('http://images.all-free-download.com/images/graphiclarge/orange_191422.jpg');
+
+        $manager->persist($media9);
+        
         $manager->flush();
             
         
@@ -83,6 +90,7 @@ class MediaData extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('media6', $media6);
         $this->addReference('media7', $media7);
         $this->addReference('media8', $media8);
+        $this->addReference('media9', $media9);
         
         
         

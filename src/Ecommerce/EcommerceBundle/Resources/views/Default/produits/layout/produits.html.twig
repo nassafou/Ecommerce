@@ -1,7 +1,6 @@
 {% extends "::layout/layout.html.twig" %}
 
 
-
 {% block body %}
    <div class="container">
 	
@@ -13,11 +12,10 @@
 		{% include 'UtilisateursBundle:Default:modulesUsed/utilisateurConnecte.html.twig'%}
 	    {% else %}
 		{% include "::modulesUsed/utilisateur.html.twig"%}
-	   {% endif %}
-	   {% render(controller('EcommerceBundle:Panier:menu')) %}
+	    {% endif %}
+	    {% render(controller('EcommerceBundle:Panier:menu')) %}
 		
 	   </div>
-		
         <div class="span9">
           {% if produits|length != 0 %}
             <ul class="thumbnails">

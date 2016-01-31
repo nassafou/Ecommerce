@@ -1,5 +1,6 @@
 <?php
 namespace Utilisateurs\UtilisateursBundle\Entity;
+
 use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\DataFixtures\ReferenceRepository;
@@ -7,6 +8,7 @@ use Doctrine\Common\DataFixtures\ReferenceRepository;
 /**
  * @ORM\Entity
  * @ORM\Table(name="utilisateurs")
+ * @ORM\Entity(repositoryClass="Ecommerce\EcommerceBundle\Repository\UtilisateursRepository")
  */
 class Utilisateurs extends BaseUser
 {
