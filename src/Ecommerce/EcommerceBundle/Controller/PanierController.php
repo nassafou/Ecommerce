@@ -8,8 +8,12 @@ use Ecommerce\EcommerceBundle\Controller\ProduitsController;
 use Ecommerce\EcommerceBundle\Entity\Produits;
 use Ecommerce\EcommerceBundle\Form\UtilisateursAdressesType;
 use Ecommerce\EcommerceBundle\Entity\UtilisateursAdresses;
+use Ecommerce\EcommerceBundle\Entity\Commandes;
+use Ecommerce\EcommerceBundle\Entity\Tva;
+use Ecommerce\EcommerceBundle\Entity\CommandesController;
 use Utilisateurs\UtilisateursBundle\Entity\Utilisateurs;
 use Ecommerce\EcommerceBundle\Controller\PanierController;
+
 
 class PanierController extends Controller
 {
@@ -154,7 +158,13 @@ class PanierController extends Controller
         
             // Appel de la methode setLivraisonOnSession
             $this->setLivraisonOnSession();
+            
+            $em              = $this->getDoctrine()->getManager();
+            $prepareCommande = $this->forward('EcommerceBundle:Commandes:prepareCommande');
+            $commande        = $em->getRepository('EcommerceBundle:Commandes')->find($prepareCommande->getContent());
         
+            ///ancien code qui marche
+            /*
             $em = $this->getDoctrine()->getManager();
             $session = $this->getRequest()->getSession();
             $adresse = $session->get('adresse');
@@ -168,7 +178,15 @@ class PanierController extends Controller
         return $this->render('EcommerceBundle:Default:panier/layout/validation.html.twig', array('produits' => $produits,
                                                                                                  'livraison' => $livraison,
                                                                                                  'facturation' => $facturation,
+    
                                                                                                  'panier' => $session->get('panier')));
+                                                                                                 */
+            
+            var_dump($commande);
+            die();
+            
+            return $this->render('EcommerceBundle:Default:panier/layout/validation.html.twig', array('commande' => $commande));
+            
     }
       
 }
