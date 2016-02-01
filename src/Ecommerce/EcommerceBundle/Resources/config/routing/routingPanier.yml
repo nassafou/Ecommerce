@@ -15,8 +15,8 @@ livraison:
     defaults: { _controller: EcommerceBundle:Panier:livraison }
     
 validation:
-    pattern:  /Validation
-    defaults: { _controller: EcommerceBundle:Panier:Validation }
+    pattern:  /validation
+    defaults: { _controller: EcommerceBundle:Panier:validation }
     
 livraisonAdresseSuppression:
     pattern:  /livraison/adresse/suppression/{id}

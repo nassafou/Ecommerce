@@ -105,7 +105,7 @@ class PanierController extends Controller
     
     public function livraisonAction()
     {
-        $utilisateurs = $this->container->get('security.context')->getToken()->getUser();
+        $utilisateur = $this->container->get('security.context')->getToken()->getUser();
         $entity = new UtilisateursAdresses();
         $form = $this->createForm(new UtilisateursAdressesType(), $entity );
         
@@ -115,17 +115,16 @@ class PanierController extends Controller
             $form->handleRequest($this->getRequest());
             if($form->isValid())
               {
-                //$utilisateurs = $this->container->get('security.context')->getToken()->getUser();
+                //$utilisateur = $this->container->get('security.context')->getToken()->getUser();
                 $em = $this->getDoctrine()->getManager();
-                $entity->setUtilisateurs($utilisateur);
+                $entity->setUtilisateur($utilisateur);
                 $em->persist($entity);
                 $em->flush();
                 
                 return $this->redirect($this->generateUrl('livraison'));
                 }            
         }
-        
-        return $this->render('EcommerceBundle:Default:panier/layout/livraison.html.twig' ,array( 'utilisateur' => $utilisateurs,
+        return $this->render('EcommerceBundle:Default:panier/layout/livraison.html.twig' ,array( 'utilisateur' => $utilisateur,
                                                                                                 'form' => $form->createView()));
     }
     
@@ -142,16 +141,34 @@ class PanierController extends Controller
         }
         else
         {
-            return $this->redirect($this->generateUrl('vadation'));
+            return $this->redirect($this->generateUrl('validation'));
         }
         
         $session->set('adresse', $adresse);
-        return $this->redirect($this->generateUrl('vadation'));
+        return $this->redirect($this->generateUrl('validation'));
     }
     
     public function validationAction()
     {
-        return $this->render('EcommerceBundle:Default:panier/layout/validation.html.twig');
+        if($this->get('request')->getMethod() == 'POST')
+        
+            // Appel de la methode setLivraisonOnSession
+            $this->setLivraisonOnSession();
+        
+            $em = $this->getDoctrine()->getManager();
+            $session = $this->getRequest()->getSession();
+            $adresse = $session->get('adresse');
+            // recueil des produits validés et de la facturation
+            $produits = $em->getRepository('EcommerceBundle:Produits')->findArray(array_keys($session->get('panier')));
+            $livraison = $em->getRepository('EcommerceBundle:UtilisateursAdresses')->find($adresse['livraison']);
+            $facturation = $em->getRepository('EcommerceBundle:UtilisateursAdresses')->find($adresse['facturation']);
+            
+             //var_dump($adresse);
+            //die();
+        return $this->render('EcommerceBundle:Default:panier/layout/validation.html.twig', array('produits' => $produits,
+                                                                                                 'livraison' => $livraison,
+                                                                                                 'facturation' => $facturation,
+                                                                                                 'panier' => $session->get('panier')));
     }
       
 }
