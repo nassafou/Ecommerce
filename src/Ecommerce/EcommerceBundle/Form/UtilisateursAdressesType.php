@@ -5,10 +5,12 @@ namespace Ecommerce\EcommerceBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Utilisateurs\UtilisateursBundle\Entity\Utilisateurs;
+use Ecommerce\EcommerceBundle\Entity\UtilisateursAdresses;
 
 class UtilisateursAdressesType extends AbstractType
 {
-        /**
+    /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */

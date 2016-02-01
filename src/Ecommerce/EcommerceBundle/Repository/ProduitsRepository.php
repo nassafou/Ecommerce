@@ -13,9 +13,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProduitsRepository extends EntityRepository
 {
-    
     // creation d'un query builder  de recherche de categorie dans le repository
-    
     public function byCategorie($categorie)
     {
     $qb = $this->createQueryBuilder('u')
@@ -26,16 +24,12 @@ class ProduitsRepository extends EntityRepository
                ->setParameter('categorie', $categorie);
                
                return $qb->getQuery()->getResult();
-    
     }
     
     // creation d'un query builder de recheche d'un produit
-    
     public function recherche($chaine)
     {
         // création d'un objet
-        
-        
         $qb = $this->createQueryBuilder('u')
                    ->select('u')
                    ->where('u.nom like :chaine')
@@ -44,12 +38,9 @@ class ProduitsRepository extends EntityRepository
                    ->setParameter('chaine', $chaine);
                    
         return $qb->getQuery()->getResult();
-        
-        
     }
     
     // creation d'un query builder pour les objects du panier
-    
     public function findArray($array)
     {
         $qb = $this->createQueryBuilder('u')
@@ -58,8 +49,6 @@ class ProduitsRepository extends EntityRepository
                   ->orderBy('u.id')
                   ->SetParameter('array', $array);
         
-        return $qb->getQuery()->getResult();
-        
-        
+        return $qb->getQuery()->getResult();  
     }
 }

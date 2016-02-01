@@ -6,7 +6,6 @@ namespace Ecommerce\EcommerceBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
 use Ecommerce\EcommerceBundle\ProduitsController;
 
 
@@ -14,13 +13,8 @@ class RechercheType extends AbstractType {
     
     #Attribut
     
-    
-    
-    
     #Constante
-    
-    
-    
+   
     #Methode
     
     
