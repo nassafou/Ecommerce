@@ -73,16 +73,18 @@ class CommandesController extends Controller
                $commande['prixHT'] = round($totalHT, 2);
                $commande['prixTTC'] = round($totalTTC,2);
                $commande['token'] = bin2hex($generator->nextBytes(20));
-            
+               
                return $commande;
         
     }
-     
+    
+    
+    
     public function prepareCommandeAction()
     {
-        $em     = $this->getDoctrine()->getManager();
+        
        $session = $this->getRequest()->getSession();
-       
+       $em = $this->getDoctrine()->getManager();
        
        if(!$session->has('commande'))
        $commande = new Commandes();
@@ -103,40 +105,6 @@ class CommandesController extends Controller
        $em->flush();
        
        return new Response($commande->getId());
-    }
-    
-    /*Cette methode remplace l'api banque
-     */
-    
-    
-    public function validationCommandeAction($id)
-    {
-        $em     = $this->getDoctrine()->getManager();
-        $commande = $em->getRepository('EcommerceBundle:Commandes')->find($id);
-        
-        /* Conditions de validité soit la commande n'existe pas ou
-         * soit elle est déja validée donc = à 1
-         */
-        
-        if(!$commande || $commande->getValider() == 1)
-        {
-            throw $this->createNotFoundException('la commande n\'existe pas ');
-        }
-        $commande->setValider(1);
-        $commande->setReference($this->container->get('setNewReference')->reference()); //service: appel du service setNewRefernce pour aller chercher la méthode réference
-        $em->flush();
-        $session = $this->getRequest()->getSession();
-        //On détruit les données de la session après validation
-        $session->remove('adresse');
-        $session->remove('panier');
-        $session->remove('commande');
-        
-        // Apres cela on redirige l'utilisateur
-        
-        $this->get('session')->getFlashBag()->add('success', 'Votre commande est validé  avec succès' );
-        return $this->redirect($this->generateUrl('produits'));
-        
-        
     }
    
       

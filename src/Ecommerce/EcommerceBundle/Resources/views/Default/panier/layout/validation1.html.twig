@@ -28,10 +28,12 @@
 							  {% for produit in commande.commande.produit %}
                                 <tr>
 							       
-                                   <td>      {{ produit.reference }}</td>
-                                     <td>    {{ produit.quantite  }} </td>
-                                         <td>{{ produit.prixHT    }}€</td>
-                                        <td> {{ produit.prixHT * produit.quantite }} €</td>
+                                   <td>{{ produit.reference }}</td>
+                                     <td>
+										  {{ produit.quantite }} 
+                                        </td>
+                                         <td>{{ produit.prixHT }}€</td>
+                                        <td>{{ produit.prixHT * panier.quantite }} €</td>
 							     
                                 </tr>
 							
@@ -39,9 +41,9 @@
 					        {% endfor %}
                         </tbody>
                     </table>
-                
+                </form>
     
-                
+                {% if produits|length != 0 %}
                 <dl class="dl-horizontal pull-right">
                     <dt>Total HT :</dt>
                     <dd>{{ commande.commande.prixHT }}€</dd>
@@ -68,16 +70,8 @@
                 </dl>
 				</div>
                 <div class="clearfix"></div>
-				{# un token pour l'API avec des chants cachés #}
-				<form action="{{ path('validationCommande', {'id': commande.id} ) }}" method='POST'/>
-				<input name="token" type="hidden" value="{{ commande.commande.token}}" />
-				<input name="prix" type="hidden" value="{{ commande.commande.prixTTC}}" />
-				<input name="date" type="hidden" value="{{ commande.date|date('d/m/Y')}}" />
-					<button type="submit" class="btn btn-success pull-right">Payer</button>
-					</form>
-				
-                
-		    
+                <a href="#" class="btn btn-success pull-right">Payer</a>
+		          {% endif %}
 		  <a href="{{ path('livraison')}}" class="btn btn-primary">Retour</a>
                 
             </div>
