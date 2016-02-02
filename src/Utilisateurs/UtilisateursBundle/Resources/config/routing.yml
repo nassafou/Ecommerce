@@ -1,3 +1,11 @@
+factures:
+    pattern:   /profil/factures
+    defaults: { _controller: UtilisateursBundle:Utilisateurs:factures }
+    
+acturesPDF:
+    pattern:   /profil/factures/pdf/{id}
+    defaults: { _controller: UtilisateursBundle:Utilisateurs:facturesPDF }
+    
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
